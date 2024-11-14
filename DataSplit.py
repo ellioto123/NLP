@@ -20,7 +20,7 @@ def load_data():
         match = re.search(r'_(\d)\.txt$', os.path.basename(file_path))
         if match:
             rating = int(match.group(1))
-            negLabels.append(rating)
+            negLabels.append(0)
             
             # Open each file and read its content with utf-8 encoding
             with open(file_path, 'r', encoding='utf-8') as file:
@@ -33,7 +33,7 @@ def load_data():
         match = re.search(r'_(\d)\.txt$', os.path.basename(file_path))
         if match:
             rating = int(match.group(1))
-            posLabels.append(rating)
+            posLabels.append(1)
             
             # Open each file and read its content with utf-8 encoding
             with open(file_path, 'r', encoding='utf-8') as file:
