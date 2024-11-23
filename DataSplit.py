@@ -56,8 +56,4 @@ def load_data():
 
 
 # Tokenize the text
-def tokenize(text):
-    for x in range(len(text)):
-        text[x] = text[x].lower()
-        text[x] = re.sub(r'[^\w\s]', '', text[x])  # removes punctuation
-        text[x] = text[x].split(" ")
+
