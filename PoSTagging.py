@@ -18,8 +18,18 @@ def constParse(taggedReviews, grammar):
     parsedReviews = []
     for review in taggedReviews:
         parsedReviews.append(parser.parse(review))
-
+    print(taggedReviews[0])
     return parsedReviews
+
+def extract_noun_phrases(parsedReviews):
+    noun_phrases_list = []
+    for tree in parsedReviews:
+        nounphrases = []
+        for subtree in tree.subtrees(filter=lambda x: x.label() == 'NP'):
+            noun_phrase = ' '.join(word for word, pos in subtree.leaves())
+            nounphrases.append(noun_phrase)
+        noun_phrases_list.append(nounphrases)
+    return noun_phrases_list
 
 def getcountNP(parsedReviews):
     countNP = []
@@ -29,7 +39,7 @@ def getcountNP(parsedReviews):
             if subtree.label() == 'NP':
                 count += 1
         countNP.append(count)
-
+    print(parsedReviews[0])
     return countNP
 
 
@@ -44,8 +54,9 @@ def combine_matrices(tfidfmatrix, countNP_matrix):
 def run(reviewset):
     taggedReviews = posTag(reviewset)
     parsedReviews = constParse(taggedReviews, grammar)
-    countNPs = getcountNP(parsedReviews)
-    return countNPs
+    # countNPs = getcountNP(parsedReviews)
+    nounPhrases = extract_noun_phrases(parsedReviews)
+    return nounPhrases
 
 
 

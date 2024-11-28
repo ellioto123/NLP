@@ -17,8 +17,8 @@ def collect_vocabulary(reviews):
 
 def vectorize(input_terms, shared_vocabulary):
     output = {}
-    for item_id in input_terms.keys(): # e.g., a document in doc_terms
-        terms = input_terms.get(item_id)
+    for item_id in input_terms.keys(): # e.g., a review in input_terms
+        terms = input_terms.get(item_id) 
         output_vector = []
         for word in shared_vocabulary:
             if word in terms.keys():
